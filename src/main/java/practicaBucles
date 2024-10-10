@@ -1,0 +1,39 @@
+import java.util.Scanner;
+
+public class TiempoDedicadoo {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String[] actividades = {"estudiar", "hacer ejercicios", "leer", "tiempo libre"};
+        double horasTotales = 0; // Variable para acumular horas
+
+        // Iterar sobre cada actividad
+        for (String actividad : actividades) {
+            double horas = 0;
+
+            // Pedir horas hasta que se ingrese un valor válido
+            while (true) {
+                System.out.print("Ingrese las horas dedicadas a " + actividad + ": ");
+                
+                // Verificar si la entrada es un número
+                if (scanner.hasNextDouble()) {
+                    horas = scanner.nextDouble();
+                    
+                    // Comprobar que las horas no sean negativas
+                    if (horas >= 0) {
+                        break; // Salir del bucle si es válido
+                    } else {
+                        System.out.println("Las horas no pueden ser negativas. Intente de nuevo.");
+                    }
+                } else {
+                    System.out.println("Entrada inválida. Por favor, ingrese un número válido.");
+                    scanner.next(); // Limpiar entrada no válida
+                }
+            }
+            horasTotales += horas; // Acumular horas
+        }
+
+        // Mostrar el tiempo total dedicado, con dos decimales
+        System.out.printf("Tiempo total dedicado a actividades: %.2f horas.%n", horasTotales);
+        scanner.close();
+    }
+}
